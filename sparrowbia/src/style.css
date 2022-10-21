@@ -1,0 +1,116 @@
+div .appBar {
+  width: 100%;
+  background-color: black;
+  font-family: "Segoe UI";
+  height: 30px;
+  padding-top: 3px;
+  font-size: small;
+}
+div .container {
+  display: flex;
+  margin-top: 45px;
+  width: 390px;
+  margin-bottom: 20px;
+}
+div .container .title {
+  margin-top: 56px;
+  font-size: 2em;
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+#titleImage {
+  margin-top: 50px;
+  margin-right: 10px;
+  width: 65px;
+  height: 50px;
+}
+#titleImage .icon {
+  width: 70px;
+  height: 58px;
+  margin-right: 5px;
+}
+.navBar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.navBar .nav-items {
+  text-decoration: none;
+  color: rgb(87, 83, 83);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+}
+.navBar .nav-items:hover {
+  font-weight: bold;
+}
+#menu1,#menu2,#menu3,#menu4{
+  background-color: rgb(255, 250, 250);
+}
+#menu1,
+#menu2,#menu3,#menu4{
+  display: none;
+}
+#drop:hover > #menu1 {
+  display: flex;
+  flex-direction: row;
+  border-style: none;
+  margin-left: -400px;
+}
+#drop2:hover > #menu2 {
+  display: flex;
+  flex-direction: row;
+  border-style: none;
+  margin-left: -400px;
+}
+#drop3:hover > #menu3 {
+  display: flex;
+  flex-direction: row;
+  border-style: none;
+  margin-left: -400px;
+}
+#drop4:hover > #menu4 {
+  display: flex;
+  flex-direction: row;
+  border-style: none;
+  margin-left: -400px;
+}
+#sub-Category {
+  margin-left: -30px;
+  border-style: none;
+  list-style: none;
+  font-size: 0.88rem;
+  color: rgb(149, 149, 149);
+  background-color: rgb(255, 250, 250);
+}
+#sub-Category li {
+  display: inline-block;
+}
+#categories {
+  background-color: rgb(255, 250, 250);
+  border-style: none;
+  margin-right: 60px;
+}
+#span-list {
+  white-space: nowrap;
+  font-weight: bold;
+}
+#menu-icon ,#menu-others-icon{
+  background-color: rgb(255, 250, 250);
+  border-style: none;
+}
+#menu-icon img {
+  width: 300px;
+  border-radius: 8px;
+  margin-right: 30px;
+}
+#menu-others-icon img {
+  width: 200px;
+  border-radius: 8px;
+  margin-right: 30px;
+}
+#slider .carousel-inner .carousel-item img {
+  width: 100%;
+  height: 570px;
+}
