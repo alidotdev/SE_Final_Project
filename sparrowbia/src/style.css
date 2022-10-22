@@ -154,12 +154,12 @@ div .container .title {
 #target-image img {
   width: 500px;
 }
-#homeBody{
-  margin-top: 100px;
+#homeBody {
+  margin-top: 60px;
   width: fit-content;
   text-align: center;
 }
-#images{
+#images {
   margin-top: 50px;
   display: flex;
 }
@@ -168,31 +168,81 @@ div .container .title {
   font-size: 1.5rem;
   color: rgb(98, 98, 98);
 }
-#homeBody #shop-by-text{
+#homeBody #shop-by-text {
   font-weight: normal;
   font-size: medium;
 }
-#images #bodyImage1 img{
+#images #bodyImage1 img {
   width: 600px;
   margin-left: 50px;
   margin-right: 110px;
 }
-#images #bodyImage1{
+#images #bodyImage1 {
   display: flex;
   flex-direction: column;
   justify-content: start;
   text-align: center;
 }
-#images #bodyImage1 .pret , #images #bodyImage2 .pret {
+#images #bodyImage1 .pret,
+#images #bodyImage2 .pret {
   margin-top: 20px;
   font-weight: bold;
   color: #d0afaf;
 }
-#images #bodyImage1 .link,#images #bodyImage2 .link{
+#images #bodyImage1 .link,
+#images #bodyImage2 .link {
   text-decoration: none;
-  color:gray;
+  color: gray;
 }
-#images #bodyImage2 img{
+#images #bodyImage2 img {
   width: 700px;
 }
+.card-group {
+  margin-top: 90px;
+  margin-bottom: 90px;
+  padding-left: 100px;
+  padding-right: 100px;
+  gap: 30px;
+}
+.card-title {
+  font-size: small;
+}
+#price-flex {
+  display: flex;
+  gap: 10px;
+}
+#price-flex i.fa {
+  margin-top: 3px;
+}
+
+@media screen and (max-width: 1250px) {
+  #slider .carousel-inner .carousel-item img {
+    width: 100%;
+    height: 440px;
+  }
+}
+@media screen and (max-width: 990px) {
+  #slider .carousel-inner .carousel-item img {
+    width: 100%;
+    height: 360px;
+  }
+  #price-flex i.fa {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+  #price-flex p {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 880px) {
+  #slider .carousel-inner .carousel-item img {
+    width: 100%;
+    height: 280px;
+  }
+  .card-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 

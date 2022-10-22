@@ -5,6 +5,7 @@ import NavBar from "./Component/NavBar";
 import Slider from "./Component/Slider"
 import Footer from "./Component/footer";
 import HomeBody from "./Component/HomeBody";
+import Cards from "./Component/Cards";
 //import css file here
 import "./style.css";
 //import Images from Images Folder
@@ -27,6 +28,7 @@ function App() {
       <NavBar />
       <Slider />
       <HomeBody />
+      <Cards />
       <Footer />
     </div>
   );
