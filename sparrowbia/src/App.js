@@ -3,6 +3,8 @@ import React from "react";
 import { Typography, Icon, Container, AppBar } from "@mui/material";
 import NavBar from "./Component/NavBar";
 import Slider from "./Component/Slider"
+import Footer from "./Component/footer";
+import HomeBody from "./Component/HomeBody";
 //import css file here
 import "./style.css";
 //import Images from Images Folder
@@ -24,6 +26,8 @@ function App() {
       </Container>
       <NavBar />
       <Slider />
+      <HomeBody />
+      <Footer />
     </div>
   );
 }
