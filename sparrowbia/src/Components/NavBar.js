@@ -1,8 +1,10 @@
 import React from "react";
-import slider from "./check.jpg";
-import mens from "./men.jpg";
-import kids from "./kid.png";
-import accessories from "./acc.webp";
+import slider from "./Images/check.jpg";
+import mens from "./Images/men.jpg";
+import kids from "./Images/kid.png";
+import accessories from "./Images/acc.png";
+import './style.css';
+
 export default function NavBar() {
   return (
     <nav className="navbar navBar">
