@@ -1,10 +1,15 @@
 import './App.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import NavBar from './Components/NavBar'; 
 
 function App() {
   return (
-    <h1>React</h1>
+    <div className="App">
+
+      <h1>React</h1>
+      <NavBar />
+    </div>
   );
 }
 
