@@ -1,33 +1,34 @@
 import "./App.css";
+import React from "react";
+import {  AppBar, Container, Icon, Typography } from "@mui/material";
+import NavBar from "./NavBar";
+import icon from "./Images/icon.png";
+import Marquee from "react-fast-marquee";
+import Footer from "./footer";
+
 
 function App() {
   return (
     <div className="App">
-      <div className="Header">
-        <h5 style={{ color: "white" }}>
-          Free Shopping on Orders above Rs 2000 (Animated Header)
-        </h5>
-      </div>
 
-      <div>
-        <h2 className="Headings">SPARROWBIA</h2>
-        <div >
-          <ul className="tags">
-            <li>
-              <a href="default.asp">Men</a>
-            </li>
-            <li>
-              <a href="news.asp">Women</a>
-            </li>
-            <li>
-              <a href="contact.asp">Kids</a>
-            </li>
-            <li>
-              <a href="about.asp">Other Accessories</a>
-            </li>
-          </ul>
-          <h1 className="Headings">FAQ</h1>
-        </div>
+      <AppBar className="appBar">
+        <Marquee>
+          Free shipping on orders above Rs.2000 within Pakistan and shipping
+          rate of 99 PKR on every local orders.
+          </Marquee>
+      </AppBar>
+
+      <div style={ {paddingTop: '30px'}}>
+      <Container maxWidth = "sm" className="container">
+        <Icon id = "titleImage">
+          <img className="icon" src={icon} alt="Logo of SPARROWBIA" />
+        </Icon>
+        <Typography className="title">SPARROWBIA</Typography>
+      </Container>
+      <NavBar />
+      <Container maxWidth = "sm" className="container">
+      <h1 style={{color: 'red' , textAlign: 'left'}} id="faq" className="title">FAQ</h1>
+      </Container>
       </div>
       <div className="Main">
           <p className="question">1-How can I place an order?</p>
@@ -79,6 +80,7 @@ function App() {
             <li>By sending email to muhammadalimurtaza997@gmail.com</li>
           </ul>
         </div>
+        <Footer />
     </div>
   );
 }
