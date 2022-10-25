@@ -260,10 +260,67 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
   font-style: normal;
 }
 
-#Card1 {
-  background-color: aquamarine;
+#class2 img{
+  width: 100px;
+  height: 150px;
+  display: flex;
+  margin-left: 50px;
 }
 
- #Card2{
-  
-} 
+#class1 img{
+  width: 250px;
+  height: 350px;
+  align-items: center;
+  /* margin-left: 300px; */
+}
+
+/* #class1 p{
+  align-items: center;
+  margin-left: 300px;
+} */
+
+/* #class1 b{
+  align-items: center;
+  margin-left: 300px;
+} */
+
+#class3 img{
+  width: 70px;
+  height: 30px;
+}
+
+#Main{
+  display: flex;
+  flex-direction: row;
+  gap: 130px;
+}
+
+#class4 img{
+  width: 250px;
+  height: 350px;
+  align-items: center;
+  margin-left: 50px;
+}
+#class5 img{
+  width: 250px;
+  height: 350px;
+  align-items: center;
+}
+#class6 img{
+  width: 250px;
+  height: 350px;
+  align-items: center;
+}
+
+#Main2{
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+}
+
+#class4 b{
+  margin-left: 50px;
+}
+#class4 p{
+  margin-left: 50px;
+}

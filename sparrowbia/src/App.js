@@ -3,7 +3,8 @@ import React from "react";
 import { Typography, Icon, Container, AppBar } from "@mui/material";
 import NavBar from "./NavBar";
 import Footer from "./footer";
-//import PrivacyPolicyBody from "./PrivacyPolicyBody";
+// import Orderpage from "./OrderPage";
+// import PrivacyPolicyBody from "./PrivacyPolicyBody";
 // import Cards from "./Cards"
 import ContactUs from "./ContactUs"
 //import css file here
@@ -26,9 +27,10 @@ function App() {
         <Typography className="title">SPARROWBIA</Typography>
       </Container>
       <NavBar />
-      {/* <PrivacyPolicyBody /> */}
-      {/* {<Cards />} */}
-      {<ContactUs/>}
+       {/* <PrivacyPolicyBody />  */}
+       {/* <Cards />  */}
+       <ContactUs/> 
+      {/* <Orderpage/> */}
       <Footer />
     </div>
   );
