@@ -1,0 +1,5 @@
+// Run this command for node-module folder
+
+npm i express dotenv mongoose colors
+
+npm i -D nodemon
