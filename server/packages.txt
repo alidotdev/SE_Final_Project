@@ -3,3 +3,7 @@
 npm i express dotenv mongoose colors
 
 npm i -D nodemon
+
+// For Middlewere handling
+
+npm i express-async-handler

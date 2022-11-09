@@ -1,0 +1,1 @@
+// Define Schema for the product here
