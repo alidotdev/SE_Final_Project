@@ -6,6 +6,6 @@ import Blogs from './container/Blogs'
 
 
 
-const App = () => <Blogs />
+const App = () => <Cart />
 
 export default App
