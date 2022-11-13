@@ -1,0 +1,19 @@
+  #faq {
+    text-align: center;
+    color: black;
+  }
+  
+  .Main {
+    margin: 20px 50px;
+  }
+  
+  .question,
+  span {
+    font-weight: bold;
+  }
+  
+  .answer,
+  .answer li {
+    padding-left: 20px;
+  }
+  
