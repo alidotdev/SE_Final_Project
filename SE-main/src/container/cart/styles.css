@@ -59,6 +59,48 @@ main footer .bottom-footer {
   color: black;
 }
 
+.quantity-btn {
+  background-color: white !important;
+  outline: none !important;
+  border: 0.5px solid rgb(206, 206, 206);
+  width: 2rem;
+  height: 2rem;
+}
+
+.product-quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid rgb(206, 206, 206);
+  width: 3rem;
+  height: 2rem;
+  margin-bottom: 0px;
+}
+
+.continue-btn {
+  background-color: rgb(46, 46, 46);
+  color: #fff;
+  border: none;
+  padding: 7px 20px 7px 20px;
+  border-radius: 5px;
+  width: 13rem;
+}
+
+.complete-btn {
+  margin-top: -1.3rem !important;
+}
+
+.remove-product {
+  color: rgb(253, 72, 72);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.product-img {
+  width: 100px;
+  height: 120px;
+}
+
 @media screen and (max-width: 480px) {
   #slider .carousel-inner .carousel-item img {
   }
@@ -121,3 +163,4 @@ td img {
   margin-right: 120px;
   max-width: 500px;
 }
+
