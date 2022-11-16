@@ -2,8 +2,8 @@ const asyncHandler = require('express-async-handler')
 
 const productModel = require('../models/productModel')
 
-// @desc Get Product
-// @route GET /api/products
+// @desc Get Cart of specific User / Email
+// @route GET /api/cart:email
 // @access Private
 
 const getProduct = asyncHandler (async (req, res) => { 
