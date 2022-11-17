@@ -12,8 +12,11 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.use('/api/product', require('./src/routes/productRoutes'))
-app.use('/api/cart', require('./src/routes/cartRoutes'))
+app.use('/cart', require('./src/routes/cartRoutes'))
+app.use('/collection', require('./src/routes/collectionRoutes'))
+app.use('/post', require('./src/routes/postRoutes'))
+app.use('/product', require('./src/routes/productRoutes'))
+app.use('/subcat', require('./src/routes/subCategoryRoutes'))
 // app.listen(port, () => console.log('listening on port ' + port));
 
 app.use(errorHandler) // Error Handlor

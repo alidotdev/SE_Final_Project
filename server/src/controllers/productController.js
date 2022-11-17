@@ -1,78 +1,173 @@
-const asyncHandler = require('express-async-handler')
+// import postProduct from "../models/Products.js";
+// import mongoose from "mongoose";
+const mongoose = require('mongoose')
+const postProduct = require("../models/productModel.js");
 
-const productModel = require('../models/productModel')
 
-// @desc Get Cart of specific User / Email
-// @route GET /api/cart:email
-// @access Private
+//Get Products
+const getPosts = async (req, res) => {
+  try {
+    const post = await postProduct.find();
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+//Create Products
+const createPosts = async (req, res) => {
+  const {
+    Title,
+    Price,
+    Description,
+    Code,
+    selectedFile,
+    Category,
+    SubCategory,
+    Collection,
+  } = req.body;
+  const newProducts = new postProduct({
+    Title,
+    Price,
+    Description,
+    Code,
+    selectedFile,
+    Category,
+    SubCategory,
+    Collection,
+  });
+  try {
+    await newProducts.save();
+    res.status(201).json(newProducts);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+//Delete Products
+const deleteProducts = async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
 
-const getProduct = asyncHandler (async (req, res) => { 
-    const products = await productModel.find()
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
 
-    res.status(200).json(products)
-})
+  await postProduct.findByIdAndRemove(id);
+  res.json({ message: "Post deleted successfully." });
+};
 
-// @desc Set Products
-// @route POST /api/producst
-// @access Private
+//Update Products
+const updatePost = async (req, res) => {
+  const { id } = req.params;
+  const {
+    Title,
+    Price,
+    Description,
+    Code,
+    selectedFile,
+    Category,
+    SubCategory,
+    Collection,
+  } = req.body;
 
-const setProduct =asyncHandler( async (req, res) => { 
-    if (!req.body.title && !req.body.description && !req.body.price && !req.body.image && !req.body.product_code && !req.body.category && !req.body.sub_category && !req.body.collection) {
-        res.status(400)
-        throw new Error('Please add complete fields')
-    }
-    const product = await productModel.create({
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price,
-        image: req.body.image,
-        product_code: req.body.product_code,
-        category: req.body.category,
-        sub_category: req.body.sub_category,
-        collect: req.body.collect
-    })
-    res.status(200).json(product)
-})
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
 
-// @desc Update products
-// @route PUT /api/product/:id
-// @access Private
+  const updatedPost = {
+    Title,
+    Price,
+    Description,
+    Code,
+    selectedFile,
+    Category,
+    SubCategory,
+    Collection,
+  };
 
-const updateProduct = asyncHandler( async (req, res) => { 
-    const product = await productModel.findById(req.params.id);
+  await postProduct.findByIdAndUpdate(id, updatedPost, { new: true });
 
-    if(!product){
-        res.status(404);
-        throw new Error('Product not found')
-    }
+  res.json(updatedPost);
+};
 
-    const updatedProduct = await productModel.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-    });
 
-    res.status(200).json(updatedProduct)
-})
+module.exports = { getPosts, createPosts, deleteProducts, updatePost };
 
-// @desc Delete Product
-// @route DELETE /api/product/:id
-// @access Private
 
-const deleteProduct = asyncHandler( async (req, res) => { 
-    const product = await productModel.findById(req.params.id);
 
-    if(!product){
-        res.status(404);
-        throw new Error('Product not found')
-    }
+// My api's for product 
+// const asyncHandler = require('express-async-handler')
 
-    await product.remove(); 
+// const productModel = require('../models/productModel')
 
-    res.status(200).json({id: req.params.id})
-})
+// // @desc Get Cart of specific User / Email
+// // @route GET /api/cart:email
+// // @access Private
 
-module.exports = {
-    getProduct, 
-    setProduct,
-    updateProduct,
-    deleteProduct
-}
+// const getProduct = asyncHandler (async (req, res) => { 
+//     const products = await productModel.find()
+
+//     res.status(200).json(products)
+// })
+
+// // @desc Set Products
+// // @route POST /api/producst
+// // @access Private
+
+// const setProduct =asyncHandler( async (req, res) => { 
+//     if (!req.body.title && !req.body.description && !req.body.price && !req.body.image && !req.body.product_code && !req.body.category && !req.body.sub_category && !req.body.collection) {
+//         res.status(400)
+//         throw new Error('Please add complete fields')
+//     }
+//     const product = await productModel.create({
+//         title: req.body.title,
+//         description: req.body.description,
+//         price: req.body.price,
+//         image: req.body.image,
+//         product_code: req.body.product_code,
+//         category: req.body.category,
+//         sub_category: req.body.sub_category,
+//         collect: req.body.collect
+//     })
+//     res.status(200).json(product)
+// })
+
+// // @desc Update products
+// // @route PUT /api/product/:id
+// // @access Private
+
+// const updateProduct = asyncHandler( async (req, res) => { 
+//     const product = await productModel.findById(req.params.id);
+
+//     if(!product){
+//         res.status(404);
+//         throw new Error('Product not found')
+//     }
+
+//     const updatedProduct = await productModel.findByIdAndUpdate(req.params.id, req.body, {
+//         new: true,
+//     });
+
+//     res.status(200).json(updatedProduct)
+// })
+
+// // @desc Delete Product
+// // @route DELETE /api/product/:id
+// // @access Private
+
+// const deleteProduct = asyncHandler( async (req, res) => { 
+//     const product = await productModel.findById(req.params.id);
+
+//     if(!product){
+//         res.status(404);
+//         throw new Error('Product not found')
+//     }
+
+//     await product.remove(); 
+
+//     res.status(200).json({id: req.params.id})
+// })
+
+// module.exports = {
+//     getProduct, 
+//     setProduct,
+//     updateProduct,
+//     deleteProduct
+// }
