@@ -19,6 +19,7 @@ const getProductByCollection = asyncHandler(async (req, res) => {
 // Get Products by ID
 const getProductsByID = async (req, res) => {
 
+  // console.log(req.params
   var ids = req.params.ids.split(',');
 
   if (ids.length > 0 )
@@ -135,9 +136,9 @@ const updatePost = async (req, res) => {
 
 
 
-module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
+// module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
 
-// module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID};
+module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID};
 
 
 
