@@ -4,7 +4,6 @@ import Products from "../Component/Products";
 import Footer from "../Component/footer";
 import Title from "../Component/MainTitle";
 import Navbar from "../Component/NavBar";
-import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Container = styled.div``;
 const FilterContainer = styled.div`
