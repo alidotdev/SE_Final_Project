@@ -6,15 +6,20 @@ import accessories from "../Images/acc.webp";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProducts } from "../actions/posts";
-export default function NavBar({ setCategory }) {
+import { getProductsByCol } from "../actions/posts";
+export default function NavBar() {
+  //get Products
   const fetchProducts = useDispatch();
-  const prod = useSelector((state) => state.products);
-  useEffect(() => {
-    fetchProducts(getProducts());
-  }, []);
-  console.log("Products ",prod)
+  const product = useSelector((state) => state.products);
+
+  console.log(product);
+  function changeParams(e) {
+    let collection = e.target.textContent;
+    let subCat = e.target.parentNode.parentNode.parentNode;
+    let cat = subCat.parentNode.parentNode.firstChild.textContent;
+    let sub_category = subCat.firstChild.textContent;
+    fetchProducts(getProductsByCol(collection, cat, sub_category));
+  }
   return (
     <nav className="navbar navBar">
       <div id="drop" className="dropdown">
@@ -25,7 +30,6 @@ export default function NavBar({ setCategory }) {
           data-bs-toggle="dropdown"
           data-hover="dropdown"
           aria-expanded="false"
-          onClick={() => setCategory("FEMALE")}
         >
           Women
         </button>
@@ -36,42 +40,231 @@ export default function NavBar({ setCategory }) {
           <li id="categories" className="list-group-item">
             <span id="span-list">Eastern</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Unstiched</li>
-              <li style={{ cursor: "pointer" }}>Pret</li>
-              <li style={{ cursor: "pointer" }}>Luxury Pret</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Unstiched
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Pret
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Luxury Pret
+                </li>
+              </Link>
             </ul>
           </li>
           <li id="categories" className="list-group-item">
             <span id="span-list">Western</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Absolute</li>
-              {prod ? (
-                <Link to = "/Products" state= "hey">
-                  <li style={{ cursor: "pointer" }}>Forever Teens</li>
-                </Link>
-              ) : (
-                <li style={{ cursor: "pointer" }}>Forever Teens</li>
-              )}
-              <li style={{ cursor: "pointer" }}>Bottoms</li>
-              <li style={{ cursor: "pointer" }}>Jackets</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Absolute
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Forever Teens
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Bottoms
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Jackets
+                </li>
+              </Link>
             </ul>
           </li>
           <li id="categories" className="list-group-item">
             <span id="span-list">Shoes</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Flats</li>
-              <li style={{ cursor: "pointer" }}>Boots</li>
-              <li style={{ cursor: "pointer" }}>Crossovers</li>
-              <li style={{ cursor: "pointer" }}>Sneakers</li>
-              <li style={{ cursor: "pointer" }}>Heels</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Flats
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Boots
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Crossovers
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Sneakers
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Heels
+                </li>
+              </Link>
             </ul>
           </li>
           <li id="categories" className="list-group-item">
             <span id="span-list">Others</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Perfumes</li>
-              <li style={{ cursor: "pointer" }}>Caps</li>
-              <li style={{ cursor: "pointer" }}>Bags</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Perfumes
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Caps
+                </li>
+              </Link>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Bags
+                </li>
+              </Link>
             </ul>
           </li>
         </ul>
@@ -84,7 +277,6 @@ export default function NavBar({ setCategory }) {
           data-bs-toggle="dropdown"
           data-hover="dropdown"
           aria-expanded="false"
-          onClick={() => setCategory("MEN")}
         >
           Men
         </button>
@@ -95,35 +287,165 @@ export default function NavBar({ setCategory }) {
           <li id="categories" className="list-group-item">
             <span id="span-list">Kameez Shalwar</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Casual</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Casual
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Semi-Formal</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Semi-Formal
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Formal</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Formal
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Exclusive</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Exclusive
+                </li>
+              </Link>
               <br />
             </ul>
           </li>
           <li id="categories" className="list-group-item">
             <span id="span-list">Kurta</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Casual</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Casual
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Semi-Formal</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Semi-Formal
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Formal</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Formal
+                </li>
+              </Link>
               <br />
             </ul>
           </li>
           <li id="categories" className="list-group-item">
             <span id="span-list">Grooms Collection</span>
             <ul id="sub-Category">
-              <li style={{ cursor: "pointer" }}>Sherwani</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Sherwani
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Turban</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Turban
+                </li>
+              </Link>
               <br />
-              <li style={{ cursor: "pointer" }}>Special Kurta</li>
+              <Link
+                to="/Products"
+                style={{
+                  textDecoration: "none",
+                  color: " rgb(87, 83, 83)",
+                }}
+              >
+                <li
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => changeParams(e)}
+                >
+                  Special Kurta
+                </li>
+              </Link>
               <br />
             </ul>
           </li>
@@ -137,7 +459,6 @@ export default function NavBar({ setCategory }) {
           data-bs-toggle="dropdown"
           data-hover="dropdown"
           aria-expanded="false"
-          onClick={() => setCategory("KIDS")}
         >
           Kids
         </button>

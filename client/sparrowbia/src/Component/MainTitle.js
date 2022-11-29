@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Icon, Container, AppBar } from "@mui/material";
 import icon from "../Images/icon.png";
+import { Link } from "react-router-dom";
 
 function Title() {
   return (
@@ -15,7 +16,7 @@ function Title() {
         <Icon id="titleImage">
           <img className="icon" src={icon} />
         </Icon>
-        <Typography className="title">SPARROWBIA</Typography>
+        <Link to="/" className="Link-title"><Typography className="title">SPARROWBIA</Typography></Link>
       </Container>
     </div>
   );

@@ -2,8 +2,16 @@
 // import mongoose from "mongoose";
 const mongoose = require('mongoose')
 const postProduct = require("../models/productModel.js");
-
-
+const asyncHandler = require('express-async-handler')
+//Get Products by Collection
+const getProductByCollection = asyncHandler(async (req, res) => { 
+  const products = await postProduct.find({Collection: req.params.coll ,Category: req.params.Cat,SubCategory: req.params.SubCat})
+  if(!products){
+      res.status(404);
+      throw new Error('Products not found')
+  }
+  res.status(200).json(products)
+})
 //Get Products
 const getPosts = async (req, res) => {
   try {
@@ -13,6 +21,8 @@ const getPosts = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+
 //Create Products
 const createPosts = async (req, res) => {
   const {
@@ -88,7 +98,7 @@ const updatePost = async (req, res) => {
 };
 
 
-module.exports = { getPosts, createPosts, deleteProducts, updatePost };
+module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
 
 
 

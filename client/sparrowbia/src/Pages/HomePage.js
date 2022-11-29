@@ -7,7 +7,17 @@ import Cards from "../Component/Cards";
 import Footer from "../Component/footer";
 import icon from "../Images/icon.png";
 import { Link } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../actions/posts";
 function HomePage() {
+  const fetchProducts = useDispatch();
+  const prod = useSelector((state) => state.products);
+  useEffect(() => {
+    fetchProducts(getProducts());
+  }, []);
   const [category, setCategory] = useState("");
 
   return (
@@ -32,10 +42,10 @@ function HomePage() {
           </Link>
         </div>
       </Container>
-      <NavBar setCategory={setCategory} />
+      <NavBar item = {prod[0]}/>
       <Slider />
       <HomeBody />
-      <Cards category={category} />
+      <Cards item = {prod[0]} />
       <Footer />
     </div>
   );

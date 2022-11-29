@@ -4,8 +4,8 @@ import Products from "../Component/Products";
 import Footer from "../Component/footer";
 import Title from "../Component/MainTitle";
 import Navbar from "../Component/NavBar";
-import {useParams, useLocation} from 'react-router-dom'
-
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Container = styled.div``;
 const FilterContainer = styled.div`
   display: flex;
@@ -27,11 +27,10 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const ProductList = (props) => {
-  const {type} = useParams();
-  // const stateParamVal = useLocation().state.stateParam;
-  console.log("props Parameter Value - " + type);
-  // console.log("Props Parameter Value - " + stateParamVal);
+const ProductList = () => {
+
+  const product = useSelector((state) => state.products);
+  console.log("products",product)
   return (
     <Container>
       <Title />
@@ -87,7 +86,7 @@ const ProductList = (props) => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products />
+      <Products item = {product} />
       <Footer />
     </Container>
   );

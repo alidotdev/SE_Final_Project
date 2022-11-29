@@ -7,7 +7,12 @@ export default (products = [], action) => {
     case "DELETE_PRODUCTS":
       return products.filter((product) => product._id !== action.payload);
     case "UPDATE_PRODUCTS":
-      return products.map((product) => (product._id === action.payload._id ? action.payload : product));
+      return products.map((product) =>
+        product._id === action.payload._id ? action.payload : product
+      );
+    case "FETCH_PRODUCTS_BY_COLLECTION":
+      console.log("In reducers ", action.payload);
+      return [action.payload];
     default:
       return products;
   }

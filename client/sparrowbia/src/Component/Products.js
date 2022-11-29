@@ -1,9 +1,5 @@
 import React from "react";
 import Product from "./Product";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProducts } from "../actions/posts";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,17 +9,14 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const Products = () => {
-  const fetchProducts = useDispatch();
-  const prod = useSelector((state) => state.products);
-  useEffect(() => {
-    fetchProducts(getProducts());
-  }, []);
+const Products = (props) => {
+  props = props.item;
+  console.log("In product: ",props)
   return (
     <Container>
-      {prod[0]?.map((item) => (
-        <Product item={item} key={item.id} />
-      ))}
+      {props[0].map((x) => {
+        return <Product item={x} />;
+      })}
     </Container>
   );
 };

@@ -11,12 +11,33 @@ const Login = () => {
   const fetchUsers = useDispatch();
   const posts = useSelector((state) => state.posts);
   const [user, setUser] = useState({ Email: "", Password: "" });
+
   useEffect(() => {
     fetchUsers(getPosts());
   }, []);
   function validateUser() {
+    let flag = false
+    let checkEmail = false
     if (user.Email == "admin@gmail.com" && user.Password == "admin123") {
+      flag = true
       navigate("/ManageProducts");
+    } else {
+      posts[0]?.map((users) => {
+        if(users.Email == user.Email && users.Password == user.Password){
+          flag = true
+          navigate("/")
+        }
+        else if (users.Email == user.Email && users.Password != user.Password){
+          flag = true
+          checkEmail = true
+        }
+      });
+    }
+    if(flag == false){
+      alert("Wrong email and Password")
+    }
+    if(checkEmail == true){
+      alert("You have entered wrong Password for Email " + user.Email)
     }
   }
 
@@ -63,7 +84,7 @@ const Login = () => {
                 <label>Password</label>
               </div>
               <div className="pass">Forgot Password?</div>
-              <input type="submit" value="Login"></input>
+              <input type="submit" value="Login" ></input>
               <div className="signup_link">
                 Not a member? <Link to="/SignUp">Signup</Link>
               </div>

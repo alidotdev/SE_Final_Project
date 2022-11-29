@@ -12,6 +12,9 @@ div .container {
   width: 390px;
   margin-bottom: 20px;
 }
+div .container .Link-title {
+  text-decoration: none;
+}
 div .container .title {
   margin-top: 56px;
   font-size: 2em;
@@ -19,6 +22,8 @@ div .container .title {
   font-style: normal;
   font-weight: bold;
   letter-spacing: 5px;
+  cursor: pointer;
+  color: #000000;
 }
 #home--icons {
   display: flex;
@@ -102,7 +107,8 @@ div .container .title {
   color: rgb(149, 149, 149);
   background-color: rgb(255, 250, 250);
 }
-#sub-Category li ,#sub-Category #Link li {
+#sub-Category li,
+#sub-Category #Link li {
   display: inline-block;
 }
 #categories {
@@ -359,17 +365,100 @@ input[type="submit"]:hover {
 .signup_link a:hover {
   text-decoration: underline;
 }
-#sub--cat{
+#sub--cat {
   text-decoration: none;
-  color:black;
+  color: black;
   padding-left: 60px;
   padding-right: 60px;
-
 }
 
-#dropdown-basic-button{
+#dropdown-basic-button {
   width: 100%;
 }
-.dropdown-menu show{
+.dropdown-menu show {
   width: 100%;
+}
+
+/* product Description */
+#Image-box{
+  display: flex;
+  gap: 0.5rem;
+}
+.large-img-group {
+  justify-content: space-between;
+  padding-left: 14rem;
+}
+
+.large-img-col {
+  flex-basis: 50%;
+  cursor: pointer;
+  width: 104px;
+}
+
+.sproduct select {
+  display: block;
+  padding: 5px 10px;
+}
+
+.sproduct input {
+  width: 50px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.sproduct input:focus {
+  outline: none;
+}
+
+.buy-btn {
+  background: black;
+  color: white;
+  opacity: 1;
+}
+#counter{
+  display: flex;
+  border: 1px solid rgb(230, 224, 224);
+  width:120px;
+  border-radius: 6px;
+}
+#incremental i.fa , #decremental i.fa{
+  color:rgb(174, 170, 170);
+  font-size: 17px;
+}
+#incremental{
+  margin-top: -1px;
+  border: 1px solid #c7c2c2;
+  width: 40px;
+  margin-right: 20px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  margin-left: -1px;
+  margin-bottom: -1px;
+  cursor: pointer;
+
+}
+#decremental{
+  margin-top: -1px;
+  border: 1px solid #c7c2c2;
+  width: 40px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+#incremental i.fa {
+  padding-left: 10px;
+}
+#decremental i.fa{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#selection{
+  display: flex;
+  gap:20px;
+}
+#number{
+  margin-right: 20px;
 }

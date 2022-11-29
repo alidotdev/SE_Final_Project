@@ -68,14 +68,15 @@ const Icon = styled.div`
   }
 `;
 
-const Product = ({ item }) => {
+const Product = (props) => {
+  props = props.item;
   return (
     <>
       <Container>
-        <Image src={item.img} />
+        <Image src={props.selectedFile} />
         <Detail>
-          <Title>{item.title}</Title>
-          <Price>{item.price}</Price>
+          <Title>{props.Title}</Title>
+          <Price>{props.Price}</Price>
         </Detail>
         <Info>
           <Icon>

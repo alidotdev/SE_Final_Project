@@ -53,6 +53,17 @@ export const getProducts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+//get Products by Collection
+export const getProductsByCol = (collection,category,sub_category) => async (dispatch) => {
+  try{
+    const { data } = await api.fetchProductsByCollection(collection,category,sub_category);
+    console.log("In action folder ",data)
+    dispatch({ type: "FETCH_PRODUCTS_BY_COLLECTION", payload: data });
+  }
+  catch(error){
+    console.log(error.message);
+  }
+}
 //delete Products
 export const deleteProducts = (id) => async (dispatch) => {
   try {
