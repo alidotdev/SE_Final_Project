@@ -7,11 +7,19 @@ const cartSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please pass email address of the user'],
     },
-    productIDs:{
-        type: Object,
-        required: [true, 'Please pass productIDs'],
-        default: undefined
-    }
+    products:
+    [
+        {
+            productID: 
+            {   
+                type: String,
+            },
+            quantity:
+            {
+                type: Number,
+            }
+        }
+    ]
     
     }, {collection: 'carts'}
 );

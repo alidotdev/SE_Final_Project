@@ -3,6 +3,7 @@
 const mongoose = require('mongoose')
 const postProduct = require("../models/productModel.js");
 const asyncHandler = require('express-async-handler')
+
 //Get Products by Collection
 const getProductByCollection = asyncHandler(async (req, res) => { 
   const products = await postProduct.find({Collection: req.params.coll ,Category: req.params.Cat,SubCategory: req.params.SubCat})
@@ -12,8 +13,43 @@ const getProductByCollection = asyncHandler(async (req, res) => {
   }
   res.status(200).json(products)
 })
+
+
+
+// Get Products by ID
+const getProductsByID = async (req, res) => {
+
+  var ids = req.params.ids.split(',');
+
+  if (ids.length > 0 )
+  {
+    const products = []
+    for (const id of ids)
+    {
+      try {
+        // console.log(id);
+        const product = await postProduct.findById(id);
+        products.push(product)
+      } catch (err) {
+        res.status(404).json({message: err.message});
+        // return ;
+      }
+    }
+    res.status(200).json(products);
+  }
+  else
+  {
+    console.log('Pass id to get product');
+    res.status(404).json({message: "Pass array ids to get product"});
+    // return;
+  }
+  
+};
+
+
 //Get Products
 const getPosts = async (req, res) => {
+  
   try {
     const post = await postProduct.find();
     res.status(200).json(post);
@@ -98,7 +134,11 @@ const updatePost = async (req, res) => {
 };
 
 
+
 module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
+
+// module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID};
+
 
 
 
