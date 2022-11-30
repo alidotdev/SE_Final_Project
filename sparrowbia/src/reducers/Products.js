@@ -13,6 +13,8 @@ export default (products = [], action) => {
     case "FETCH_PRODUCTS_BY_COLLECTION":
       console.log("In reducers ", action.payload);
       return [action.payload];
+    case "FETCH_PRODUCTS_BY_ID":
+      return [action.payload];
     default:
       return products;
   }

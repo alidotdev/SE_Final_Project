@@ -12,3 +12,4 @@ export const deleteProducts = (id) => axios.delete(`${url2}/${id}`);
 export const updatePost = (id, updatedPost) => axios.patch(`${url2}/${id}`, updatedPost);
 export const fetchCollection = () => axios.get(url3);
 export const fetchProductsByCollection = (Collection,Category,SubCategory) => axios.get(`${url2}/${Collection}/${Category}/${SubCategory}`)
+export const fetchProductsById = (Id) => axios.get(`${url2}/${Id}`)

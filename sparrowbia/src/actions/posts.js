@@ -64,6 +64,17 @@ export const getProductsByCol = (collection,category,sub_category) => async (dis
     console.log(error.message);
   }
 }
+//get Product By Id
+export const getProductsById = (Id) => async (dispatch) => {
+  try{
+    const { data } = await api.fetchProductsById(Id);
+    console.log("In action folder ",data)
+    dispatch({ type: "FETCH_PRODUCTS_BY_ID", payload: data });
+  }
+  catch(error){
+    console.log(error.message);
+  }
+}
 //delete Products
 export const deleteProducts = (id) => async (dispatch) => {
   try {

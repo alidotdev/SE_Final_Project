@@ -70,6 +70,9 @@ const Icon = styled.div`
 
 const Product = (props) => {
   props = props.item;
+  function clickIcon(){
+    alert("Product Description")
+  }
   return (
     <>
       <Container>
@@ -82,8 +85,8 @@ const Product = (props) => {
           <Icon>
             <ShoppingCartOutlinedIcon />
           </Icon>
-          <Icon>
-            <SearchOutlinedIcon />
+          <Icon onClick={clickIcon}>
+            <SearchOutlinedIcon/>
           </Icon>
           <Icon>
             <FavoriteBorderOutlinedIcon />

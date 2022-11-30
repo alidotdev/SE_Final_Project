@@ -6,8 +6,6 @@ const cartModel = require('../models/cartModel')
 // @route GET /api/cart:user
 // @access Private
 
-// Sir me api bana raha hon cart ke liye but ye get ki api nai ban rahi 
-// ye error a rahi hai
 
 const getCart = asyncHandler (async (req, res) => { 
     // console.log(req.params.user)
