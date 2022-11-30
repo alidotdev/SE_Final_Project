@@ -138,7 +138,7 @@ const updatePost = async (req, res) => {
 
 // module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
 
-module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID};
+module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID, getProductByCollection};
 
 
 
