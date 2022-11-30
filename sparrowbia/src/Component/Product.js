@@ -3,7 +3,9 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
+import {getProductsById} from "../actions/posts"
+import { useNavigate} from "react-router-dom";
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -70,8 +72,11 @@ const Icon = styled.div`
 
 const Product = (props) => {
   props = props.item;
+  const navigate = useNavigate();
+  const dispatchProduct = useDispatch();
   function clickIcon(){
-    alert("Product Description")
+    dispatchProduct(getProductsById(props._id))
+    navigate("/ProductsDescription");
   }
   return (
     <>
