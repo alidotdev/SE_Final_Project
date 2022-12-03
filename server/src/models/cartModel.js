@@ -9,17 +9,24 @@ const cartSchema = mongoose.Schema({
     },
     products:
     [
+        
         {
             productID: 
             {   
                 type: String,
+                required: [true , 'Please add product ID'],
+
             },
             quantity:
             {
                 type: Number,
+                required: [true , 'Please add quantity of product'],
             }
-        }
-    ]
+            // required: [true, 'Please add products to add in cart'],
+        },
+        
+    ], 
+        
     
     }, {collection: 'carts'}
 );

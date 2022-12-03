@@ -1,4 +1,5 @@
 import * as api from "../api";
+
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
@@ -7,6 +8,17 @@ export const getPosts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+export const fetchProductsbyIDS = (ids) =>  async (dispatch) => {
+  try {
+    const { data } = await api.fetchProductsbyIDS (ids);
+    dispatch ({ type: "FETCH_PRODUCTS_BY_ID", payload: data });
+  } catch (error) {
+    console.log (error);
+  }
+};
+
 export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
@@ -25,6 +37,8 @@ export const getSubCatPosts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
 //get Collection
 export const getCollection = () => async (dispatch) => {
   try {
@@ -34,6 +48,8 @@ export const getCollection = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
 //Create Products
 export const createProducts = (post) => async (dispatch) => {
   try {
@@ -53,6 +69,8 @@ export const getProducts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
 //get Products by Collection
 export const getProductsByCol = (collection,category,sub_category) => async (dispatch) => {
   try{
@@ -63,6 +81,7 @@ export const getProductsByCol = (collection,category,sub_category) => async (dis
   catch(error){
     console.log(error.message);
   }
+
 }
 //get Product By Id
 export const getProductsById = (Id) => async (dispatch) => {
@@ -74,7 +93,8 @@ export const getProductsById = (Id) => async (dispatch) => {
   catch(error){
     console.log(error.message);
   }
-}
+};
+
 //delete Products
 export const deleteProducts = (id) => async (dispatch) => {
   try {
@@ -83,6 +103,8 @@ export const deleteProducts = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_PRODUCTS", payload: id });
   } catch {}
 };
+
+
 //Update Products
 export const updatePost = (id, post) => async (dispatch) => {
   try {

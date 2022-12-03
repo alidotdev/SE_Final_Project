@@ -1,13 +1,47 @@
 import { useState } from 'react'
 
-import {Footer, Header}  from '../Component/'
+import {Footer}  from '../Component/'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { getcart, fetchProductsbyIDS } from '../actions/posts'
 
 import Picture1 from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/check.jpg'
 import Picture from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/kid.png'
 // import './styles.css'
 import { useEffect } from 'react'
 
+const temp = [
+  {
+    id: "01234",
+    quantity: 2
+  },
+  {
+    id: "01234",
+    quantity: 2
+  },
+  {
+    id: "01234",
+    quantity: 2
+  }
+]
+
 const Cart = () => {
+
+ 
+
+  const user = 'muhammadalimurtaza997@gmail.com'
+  
+  const dispatch = useDispatch();
+  const cartData = useSelector(state=>state.cart)
+
+  const tempFun = () =>{
+    const idArr = temp.map(item => item.id);
+  }
+
+
+  console.log(cartData);
+
+
   const [tax, setTax] = useState(0)
   const [subTotal, setsubTotal] = useState(0)
   const [products, setProducts] = useState([
@@ -37,6 +71,17 @@ const Cart = () => {
     setTax(0.1 * subTotalPrice)
   }
 
+ 
+
+  useEffect(() => {
+    dispatch((getcart(user)))
+  }, [])
+
+
+
+
+
+
   useEffect(() => {
     calculateTotalPrice()
   }, [products])
@@ -64,7 +109,7 @@ const Cart = () => {
 
   return (
     <main>
-      <Header />
+      {/* <Header /> */}
       <div>
         <div className='small-container cart-page'>
           {products.length === 0 ? (
