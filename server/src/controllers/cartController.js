@@ -8,7 +8,7 @@ const cartModel = require('../models/cartModel')
 
 
 const getCart = asyncHandler (async (req, res) => { 
-    console.log(req.params.user)
+    // console.log(req.params.user)
     const cart = await cartModel.find({user: req.params.user})
 
     if(!cart){
@@ -40,7 +40,7 @@ const setCart =asyncHandler( async (req, res) => {
 
     // if (await cartModel.find({user: req.body.user}).limit(1).size() > 0) {
     const userExist = await cartModel.find({ user: req.body.user });
-    console.log(userExist.length)
+    // console.log(userExist.length)
     if(userExist.length > 0){                                                        // Update case
         console.log('Update case')
         const filter = {user: req.body.user}
@@ -49,8 +49,8 @@ const setCart =asyncHandler( async (req, res) => {
         cart.products = req.body.products
         cart.save()
         
-        console.log('Updated')
-        console.log(cart.products) 
+        // console.log('Updated')
+        // console.log(cart.products) 
         res.status(200).json(cart)
     }
     else{         
