@@ -3,6 +3,11 @@ const url = 'http://localhost:8000/post';
 const url1 = 'http://localhost:8000/subcat'
 const url2 = 'http://localhost:8000/product'
 const url3 = 'http://localhost:8000/collection'
+const cartURL = 'http://localhost:8000/cart'
+
+export const fetchCartData = (userName) => axios.get(cartURL + '/' + userName);
+export const updateCart = (cartData) => axios.post(cartURL + '/')
+
 export const fetchPosts = () => axios.get(url);
 export const fetchProductsbyIDS = (ids) => axios.get(url2 + "/" + ids);
 export const createPost = (newPost) => axios.post(url,newPost);

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Footer}  from '../Component/'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getcart, fetchProductsbyIDS } from '../actions/posts'
+import { getCart, fetchProductsbyIDS  } from '../actions/posts'
 
 import Picture1 from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/check.jpg'
 import Picture from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/kid.png'
@@ -12,15 +12,15 @@ import { useEffect } from 'react'
 
 const temp = [
   {
-    id: "01234",
+    productID: "01234",
     quantity: 2
   },
   {
-    id: "01234",
+    productID: "01234",
     quantity: 2
   },
   {
-    id: "01234",
+    productID: "01234",
     quantity: 2
   }
 ]
@@ -72,12 +72,9 @@ const Cart = () => {
   }
 
  
-
   useEffect(() => {
-    dispatch((getcart(user)))
+    dispatch((getCart(user)))
   }, [])
-
-
 
 
 

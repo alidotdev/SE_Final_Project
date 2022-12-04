@@ -1,5 +1,16 @@
 import * as api from "../api";
 
+
+export const getCart = (userName) => async (dispatch) => {
+  try{
+    const { data } = await api.fetchCartData(userName);
+    dispatch({type: "Get_Cart_Data_By_User_Name", payload: data});
+  }
+  catch(error){
+    console.log(error.message);
+  }
+};
+
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
@@ -8,6 +19,8 @@ export const getPosts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
 
 
 export const fetchProductsbyIDS = (ids) =>  async (dispatch) => {
