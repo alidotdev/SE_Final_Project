@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-import {Footer}  from '../Component/'
+import {footer}  from '../Component/footer'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getCart, fetchProductsbyIDS  } from '../actions/posts'
+import { getCart, fetchProductsbyIDS , updateCart } from '../actions/posts'
 
-import Picture1 from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/check.jpg'
-import Picture from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/kid.png'
+// import Picture1 from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/check.jpg'
+// import Picture from 'E:/Semester 5/SE Lab/Final Project/IDLSE/sparrowbia/src/Images/kid.png'
 // import './styles.css'
 import { useEffect } from 'react'
 
@@ -29,17 +29,12 @@ const Cart = () => {
 
  
 
-  const user = 'muhammadalimurtaza997@gmail.com'
+  const user = 'ehsaan2288@gmail.com'
   
-  const dispatch = useDispatch();
-  const cartData = useSelector(state=>state.cart)
 
   const tempFun = () =>{
     const idArr = temp.map(item => item.id);
   }
-
-
-  console.log(cartData);
 
 
   const [tax, setTax] = useState(0)
@@ -52,7 +47,7 @@ const Cart = () => {
       Size: 'Medium',
       quantity: 1,
       total: 90,
-      image: Picture,
+      // image: Picture,
     },
     {
       id: 1,
@@ -61,7 +56,7 @@ const Cart = () => {
       Size: 'Medium',
       quantity: 1,
       total: 50,
-      image: Picture1,
+      // image: Picture1,
     },
   ])
 
@@ -75,7 +70,15 @@ const Cart = () => {
   useEffect(() => {
     dispatch((getCart(user)))
   }, [])
+  const dispatch = useDispatch();
+  const cartData = useSelector(state=>state.cart)
+  console.log("cart data: ",cartData[0]);
 
+  useEffect(() => {
+    const ids = cartData[0].products
+    console.log('IDS : ', ids)
+    dispatch(fetchProductsbyIDS(ids))
+  }, [])
 
 
 
@@ -194,7 +197,7 @@ const Cart = () => {
           )}
         </div>
       </div>
-      <Footer />
+      <footer />
     </main>
   )
 }

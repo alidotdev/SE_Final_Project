@@ -1,6 +1,16 @@
 import * as api from "../api";
 
 
+export const updateCart = (cartData) => async (dispatch) => {
+  try{
+    const { data } = await api.updateCart(cartData);
+    dispatch({type: "Update_Cart", payload: data});
+  }
+  catch(error){
+    console.log(error.message);
+  }
+};
+
 export const getCart = (userName) => async (dispatch) => {
   try{
     const { data } = await api.fetchCartData(userName);
