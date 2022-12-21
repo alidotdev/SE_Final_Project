@@ -27,7 +27,7 @@ div .container .title {
 }
 #home--icons {
   display: flex;
-  padding-left: 430px;
+  padding-left: 22vw;
   gap: 20px;
   margin-top: 70px;
 }
@@ -193,9 +193,9 @@ div .container .title {
   font-size: medium;
 }
 #images #bodyImage1 img {
-  width: 600px;
+  width: 70%;
   margin-left: 50px;
-  margin-right: 110px;
+  margin-right: -15rem;
 }
 #images #bodyImage1 {
   display: flex;
@@ -215,7 +215,9 @@ div .container .title {
   color: gray;
 }
 #images #bodyImage2 img {
-  width: 700px;
+  width: 120%;
+  height: 80%;
+  object-fit: cover;
 }
 .card-group {
   margin-top: 90px;
@@ -262,6 +264,19 @@ div .container .title {
   .card-group {
     display: flex;
     flex-direction: column;
+  }
+  #home--icons {
+    padding-left: 6vw;
+  }
+}
+@media screen and (max-width: 680px) {
+  #home--icons {
+    padding-left: 3vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  #home--icons {
+    padding-left: 0.3vw;
   }
 }
 

@@ -30,6 +30,14 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+export const getPostsByEmail = (email) => async (dispatch) => {
+  try{
+    const { data } = await api.fetchUsersByEmail(email);
+    dispatch ({ type: "FETCH_USERS_BY_EMAIL", payload: data });
+  } catch (error) {
+    console.log (error);
+  }
+}
 
 
 

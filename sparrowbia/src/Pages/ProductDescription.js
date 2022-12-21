@@ -1,14 +1,46 @@
 import MainTitle from "../Component/MainTitle";
-// import image1 from "../Images/1.jpg";
-// import image2 from "../Images/2.jpg";
-// import image3 from "../Images/3.jpg";
-// import image4 from "../Images/4.jpg";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+//to update customer's Cart
+import { getCart,updateCart } from "../actions/posts";
 const Description = () => {
   const productDes = useSelector((state) => state.products);
+  const cartData = useSelector((state) => state.cart);
   const [counter, setCounter] = useState(0);
-  console.log("In Product Description Page: ", productDes[0][0].Category);
+  const mail = useSelector((state) => state.posts);
+  const dispatchCart = useDispatch();
+  const getDispatch = useDispatch();
+  const [cartDat, setCartData] = useState({
+    user: "",
+    products: [
+      {
+        productID: "",
+        quantity: 0,
+      },
+    ],
+  });
+  useEffect(() => {
+    getDispatch(getCart(mail[0][0].Email));
+  }, []);
+  useEffect(() => {
+    // console.log("Quantity: ", cartDat.products[0].quantity);
+    // console.log("Outer Cart Data from API: ", cartData);
+    if (cartDat.products[0].quantity > 0) {
+      if (cartData[0].length > 0) {
+        cartData[0][0].products.push(cartDat.products[0]);
+        dispatchCart(
+          updateCart({
+            user: cartData[0][0].user,
+            products: cartData[0][0].products,
+          })
+        );
+      } else {
+        dispatchCart(updateCart(cartDat));
+      }
+    }
+  }, [cartDat]);
+  // console.log("In Product Description Page: ", productDes[0][0].Category);
   function incremental() {
     setCounter(counter + 1);
   }
@@ -17,47 +49,34 @@ const Description = () => {
       setCounter(counter - 1);
     }
   }
+  function addProductToCart() {
+    if (mail.length > 0) {
+      setCartData((cartDat) => {
+        return {
+          user: mail[0][0].Email,
+          products: [
+            {
+              productID: productDes[0][0]._id,
+              quantity: counter,
+            },
+          ],
+        };
+      });
+    } else {
+      alert("Login Before add something into the cart");
+    }
+  }
   return (
     <>
       <MainTitle />
       <section className="container-fluid sproduct my-5 pt-5">
         <div className="row-mt-5" style={{ display: "flex", gap: "5rem" }}>
-          <div className="col-lg-5 col-md-12 col-12">
-            <div id="Image-box">
-              <div className="large-img-group">
-                {/* <div className="large-img-col">
-                  <img
-                    src={productDes[0][0].selectedFile}
-                    width="100%"
-                    className="small-img"
-                    alt="Picture4"
-                  />
-                </div> */}
-
-                {/* <div className="large-img-col">
-                  <img
-                    src={image3}
-                    width="100%"
-                    className="small-img"
-                    alt="Picture5"
-                  />
-                </div>
-
-                <div class="large-img-col">
-                  <img
-                    src={image4}
-                    width="100%"
-                    className="small-img"
-                    alt="Picture6"
-                  />
-                </div> */}
-              </div>
-              <img
-                src={productDes[0][0].selectedFile}
-                className="img-fluid w-50 pb-1"
-                alt="Picture3"
-              />
-            </div>
+          <div id="des-img" className="col-lg-5 col-md-12 col-12">
+            <img
+              src={productDes[0][0].selectedFile}
+              className="img-fluid w-50 pb-1"
+              alt="Picture3"
+            />
           </div>
 
           <div className="col-sm-6">
@@ -84,7 +103,9 @@ const Description = () => {
                   <i class="fa fa-minus" aria-hidden="true"></i>
                 </div>
               </div>
-              <button className="buy-btn">Add To Cart</button>
+              <button className="buy-btn" onClick={addProductToCart}>
+                Add To Cart
+              </button>
             </div>
             <h4 className="mt-5 mb-5">Product Details</h4>
             <h6 style={{ color: "grey" }}>{productDes[0][0]?.Description}</h6>

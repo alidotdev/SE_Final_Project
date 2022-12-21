@@ -35,7 +35,6 @@ function HomePage() {
         <Typography className="title">SPARROWBIA</Typography>
         <div id="home--icons">
           <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-
           <i className="fa fa-heart" aria-hidden="true"></i>
           <Link id="Link" to="/Login">
             <i className="fa fa-user" aria-hidden="true"></i>{" "}

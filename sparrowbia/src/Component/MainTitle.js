@@ -16,7 +16,18 @@ function Title() {
         <Icon id="titleImage">
           <img className="icon" src={icon} />
         </Icon>
-        <Link to="/" className="Link-title"><Typography className="title">SPARROWBIA</Typography></Link>
+        <Link to="/" className="Link-title">
+          <Typography className="title">SPARROWBIA</Typography>
+        </Link>
+        <div id="home--icons">
+          <Link id="Link" to="/cart">
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          </Link>
+          <i className="fa fa-heart" aria-hidden="true"></i>
+          <Link id="Link" to="/Login">
+            <i className="fa fa-user" aria-hidden="true"></i>{" "}
+          </Link>
+        </div>
       </Container>
     </div>
   );

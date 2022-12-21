@@ -3,12 +3,13 @@ import { useNavigate, Link } from "react-router-dom";
 import MainTitle from "../Component/MainTitle";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getPosts } from "../actions/posts";
+import { getPosts , getPostsByEmail } from "../actions/posts";
 import { useEffect } from "react";
 import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
   const fetchUsers = useDispatch();
+  const fetchUsersByEmail = useDispatch();
   const posts = useSelector((state) => state.posts);
   const [user, setUser] = useState({ Email: "", Password: "" });
 
@@ -25,7 +26,8 @@ const Login = () => {
       posts[0]?.map((users) => {
         if(users.Email == user.Email && users.Password == user.Password){
           flag = true
-          navigate("/")
+          fetchUsersByEmail(getPostsByEmail(user.Email))
+          navigate("/" )
         }
         else if (users.Email == user.Email && users.Password != user.Password){
           flag = true

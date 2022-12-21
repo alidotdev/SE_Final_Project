@@ -71,6 +71,9 @@ const createPosts = async (req, res) => {
     Category,
     SubCategory,
     Collection,
+    Color,
+    Size,
+    Fabric,
   } = req.body;
   const newProducts = new postProduct({
     Title,
@@ -81,6 +84,9 @@ const createPosts = async (req, res) => {
     Category,
     SubCategory,
     Collection,
+    Color,
+    Size,
+    Fabric,
   });
   try {
     await newProducts.save();
@@ -113,6 +119,9 @@ const updatePost = async (req, res) => {
     Category,
     SubCategory,
     Collection,
+    Color,
+    Size,
+    Fabric,
   } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id))
@@ -127,6 +136,9 @@ const updatePost = async (req, res) => {
     Category,
     SubCategory,
     Collection,
+    Color,
+    Size,
+    Fabric,
   };
 
   await postProduct.findByIdAndUpdate(id, updatedPost, { new: true });

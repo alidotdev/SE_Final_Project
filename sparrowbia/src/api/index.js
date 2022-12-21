@@ -9,6 +9,7 @@ export const fetchCartData = (userName) => axios.get(cartURL + '/' + userName);
 export const updateCart = (cartData) => axios.post(cartURL + '/', cartData);
 
 export const fetchPosts = () => axios.get(url);
+export const fetchUsersByEmail = (email) => axios.get(url + "/" + email)
 export const fetchProductsbyIDS = (ids) => axios.get(url2 + "/" + ids);
 export const createPost = (newPost) => axios.post(url,newPost);
 export const fetchSubCatPosts = () => axios.get(url1);
