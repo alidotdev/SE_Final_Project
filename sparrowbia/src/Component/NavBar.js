@@ -12,7 +12,7 @@ export default function NavBar() {
   const fetchProducts = useDispatch();
   const product = useSelector((state) => state.products);
 
-  console.log(product);
+  // console.log(product);
   function changeParams(e) {
     let collection = e.target.textContent;
     let subCat = e.target.parentNode.parentNode.parentNode;
