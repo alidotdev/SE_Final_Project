@@ -1,23 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, fetchProductsbyIDS } from "../actions/posts";
-import { useEffect , useState } from "react";
+import { getCart, fetchProductsbyIDS, updateCart } from "../actions/posts";
+import { useEffect, useState } from "react";
 import Product from "../Component/Product";
+
 const Cart = () => {
   const cartData = useSelector((state) => state.cart);
   const mail = useSelector((state) => state.posts);
-  const products = useSelector((state) => state.products);
+  const pro = useSelector((state) => state.products);
   const getCartDispatch = useDispatch();
   const getProductsById = useDispatch();
+  const dispatchCart = useDispatch();
+  const [cartUpdate, setCartUpdate] = useState({});
+  var productUpdated = [];
   useEffect(() => {
     if (mail.length > 0) {
-      console.log("check: ", mail[0][0].Email);
       getCartDispatch(getCart(mail[0][0].Email));
     } else {
       alert("First Login to view Carts product");
     }
-  }, []);
+  },[]);
+  // console.log("Cart type: ", cartData)
   useEffect(() => {
     if (cartData.length > 0) {
+      // console.log(cartData[0][0])
+      setCartUpdate(cartData[0][0]);
       const y = cartData[0][0].products.map((x) => {
         return x.productID;
       });
@@ -25,22 +31,68 @@ const Cart = () => {
       const quantity = cartData[0][0].products.map((x) => {
         return x.quantity;
       });
-      console.log("Quantity: ", quantity);
-      console.log("cart: ", cartData[0][0].products);
-      console.log("Map function check: ", y);
       getProductsById(fetchProductsbyIDS(y));
     }
   }, [cartData]);
-  console.log("Products: ", products);
-  const [productQuantity, setQuantity] = useState(0);
-  function setProductQuantity(value){
-    console.log(value)
+  const [counter, setCounter] = useState(0);
+  //functions to handle Cart's Product Quantity
+  function incremental(target, id) {
+    productUpdated = []
+    let count = target;
+    count = count + 1;
+    // console.log(cartUpdate.products);
+    for (var i = 0; i < cartUpdate.products.length; i++) {
+      if (cartUpdate.products[i].productID == id) {
+        productUpdated.push({
+          productID: cartUpdate.products[i].productID,
+          quantity: count,
+        });
+      } else {
+        productUpdated.push({
+          productID: cartUpdate.products[i].productID,
+          quantity: cartUpdate.products[i].quantity,
+        });
+      }
+    }
+    // console.log(cartUpdate.user);
+    // console.log("product Array", cartUpdate.products);
+    console.log('calling Update Cart : ')
+    console.log({ user: cartUpdate.user, products: productUpdated})
+    dispatchCart(
+      updateCart({ user: cartUpdate.user, products: productUpdated})
+    );
   }
+  function decremental(target, id) {
+    let count = target;
+    // console.log(target);
+    if (count > 0) {
+      count = count - 1;
+    }
+    // console.log(cartUpdate);
+    for (var i = 0; i < cartUpdate.products.length; i++) {
+      if (cartUpdate.products[i].productID == id) {
+        productUpdated.push({
+          productID: cartUpdate.products[i].productID,
+          quantity: count,
+        });
+      } else {
+        productUpdated.push({
+          productID: cartUpdate.products[i].productID,
+          quantity: cartUpdate.products[i].quantity,
+        });
+      }
+    }
+    // console.log(cartUpdate.user);
+    // console.log("product Array", cartUpdate.products);
+    dispatchCart(
+      updateCart({ user: cartUpdate.user, products: productUpdated}));
+  }
+  // console.log("final updated object for cart: ", cartUpdate);
   return (
     <main>
       <div>
         <div className="small-container cart-page">
-          {products.length === 0 ? (
+          {pro.length === 0 ? (
             <div className="container justify-content-center align-items-center">
               <div className="justify-content-center align-items-center text-center">
                 <h1>Your Cart</h1>
@@ -61,7 +113,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                   <div className="separator" />
-                  {products[0].map((product, index) => (
+                  {pro[0].map((product, index) => (
                     <>
                       <tr>
                         <td scope="row">
@@ -79,31 +131,40 @@ const Cart = () => {
                         </td>
                         <td>{product.Price} PKR</td>
                         <td>
-                          <div style={{display:"flex", flexDirection:"row"}}>
-                            <button
-                              className=  "quantity-btn"
-                            >
-                              -
-                            </button>
-                            {cartData[0][0].products.map((x) => {
-                              return x.productID == product._id ? (
+                          {cartData[0][0]?.products.map((x) => {
+                            return x.productID == product._id ? (
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "row",
+                                }}
+                              >
+                                <button
+                                  className="quantity-btn"
+                                  id="incremental-btn"
+                                  onClick={(e) => {
+                                    decremental(x.quantity, x.productID);
+                                  }}
+                                >
+                                  -
+                                </button>
                                 <p className="product-quantity">{x.quantity}</p>
-                              ) : (
-                                <p></p>
-                              );
-                            })}
-
-                            <button
-                              className="quantity-btn"
-                            >
-                              +
-                            </button>
-                          </div>
+                                <button
+                                  className="quantity-btn"
+                                  onClick={(e) => {
+                                    incremental(x.quantity, x.productID);
+                                  }}
+                                >
+                                  +
+                                </button>
+                              </div>
+                            ) : (
+                              <p></p>
+                            );
+                          })}
                         </td>
                         <td>
-                          <i
-                            className="fa fa-remove remove-product"
-                          ></i>
+                          <i className="fa fa-remove remove-product"></i>
                         </td>
                       </tr>
                       <div className="separator" />
