@@ -15,11 +15,11 @@ import { getProducts } from "../actions/posts";
 function HomePage() {
   const fetchProducts = useDispatch();
   const prod = useSelector((state) => state.products);
-
   useEffect(() => {
     fetchProducts(getProducts());
   }, []);
   const [category, setCategory] = useState("");
+
   return (
     <div>
       <AppBar className="appBar">
@@ -34,19 +34,17 @@ function HomePage() {
         </Icon>
         <Typography className="title">SPARROWBIA</Typography>
         <div id="home--icons">
-          <Link id="Link" to="/cart">
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          </Link>
+          <i className="fa fa-shopping-cart" aria-hidden="true"></i>
           <i className="fa fa-heart" aria-hidden="true"></i>
           <Link id="Link" to="/Login">
             <i className="fa fa-user" aria-hidden="true"></i>{" "}
           </Link>
         </div>
       </Container>
-      <NavBar item={prod[0]} />
+      <NavBar item = {prod[0]}/>
       <Slider />
       <HomeBody />
-      <Cards item={prod[0]} />
+      <Cards item = {prod[0]} />
       <Footer />
     </div>
   );

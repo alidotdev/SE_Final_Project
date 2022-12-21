@@ -1,6 +1,7 @@
 import React from "react";
 import home1 from "../Images/home2.webp";
 import home2 from "../Images/home3.webp";
+
 export default function HomeBody() {
   return (
     <div id="homeBody">
