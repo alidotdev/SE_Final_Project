@@ -11,6 +11,9 @@ const postProducts = new Schema({
   Category: String,
   SubCategory: String,
   Collection: String,
+  Color: String,
+  Size: String,
+  Fabric: String
 });
 
 

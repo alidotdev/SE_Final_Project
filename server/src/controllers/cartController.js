@@ -1,16 +1,11 @@
 const asyncHandler = require('express-async-handler')
-
 const cartModel = require('../models/cartModel')
-
 // @desc Get Cart
 // @route GET /api/cart:user
 // @access Private
-
-
 const getCart = asyncHandler (async (req, res) => { 
     // console.log(req.params.user)
     const cart = await cartModel.find({user: req.params.user})
-
     if(!cart){
         res.status(404);
         throw new Error('Cart not found')
@@ -70,20 +65,20 @@ const setCart =asyncHandler( async (req, res) => {
 // @route PUT /api/product/:id
 // @access Private
 
-// const updateProduct = asyncHandler( async (req, res) => { 
-//     const product = await productModel.findById(req.params.id);
+const updateProduct = asyncHandler( async (req, res) => { 
+    const product = await productModel.findById(req.params.id);
 
-//     if(!product){
-//         res.status(404);
-//         throw new Error('Product not found')
-//     }
+    if(!product){
+        res.status(404);
+        throw new Error('Product not found')
+    }
 
-//     const updatedProduct = await productModel.findByIdAndUpdate(req.params.id, req.body, {
-//         new: true,
-//     });
+    const updatedProduct = await productModel.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
 
-//     res.status(200).json(updatedProduct)
-// })
+    res.status(200).json(updatedProduct)
+})
 
 // @desc Delete Product
 // @route DELETE /api/product/:id

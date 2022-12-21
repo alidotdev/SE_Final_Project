@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
 //import actions
 import {
   getSubCatPosts,
@@ -18,6 +19,12 @@ import {
   updatePost,
   getCollection,
 } from "../actions/posts";
+const Select = styled.select`
+  margin-top: 15px;
+  padding: 5px;
+  margin-right: 10px;
+`;
+const Option = styled.option``;
 function ManageProducts() {
   const dispatchProducts = useDispatch();
   const deleteDispatch = useDispatch();
@@ -38,11 +45,15 @@ function ManageProducts() {
     Category: "Select Options",
     SubCategory: "Select Options",
     Collection: "Select Options",
+    Color: "Color",
+    Size: "Size",
+    Fabric: "Fabric",
   });
   useEffect(() => {
     fetchSubCat(getSubCatPosts());
     fetchCollection(getCollection());
   }, []);
+  console.log("select val: ", postData.Color);
   //function to set Categories Option
   function changeValue(target) {
     setPostData({ ...postData, Category: target });
@@ -50,13 +61,44 @@ function ManageProducts() {
   //for submission and Updation of Products
   function submitProducts(e) {
     e.preventDefault();
+    var checkTitle = false;
+    var checkCode = false;
+    const titleCheck = prod[0].map((x) => {
+      return x.Title;
+    });
+    var codeCheck = prod[0].map((x) => {
+      return x.Code;
+    });
+    for (var i = 0; i < titleCheck.length; i++) {
+      if (postData.Title == titleCheck[i]) {
+        checkTitle = true;
+        break;
+      }
+    }
+    for (var i = 0; i < codeCheck.length; i++) {
+      if (postData.Code == codeCheck[i]) {
+        checkCode = true;
+        break;
+      }
+    }
     if (currentId == "") {
-      dispatchProducts(createProducts(postData));
-      alert("Submit Products Successfully");
+      if (checkTitle == false && checkCode == false) {
+        console.log("Product Data: ", postData);
+        dispatchProducts(createProducts(postData));
+        alert("Submit Products Successfully");
+      } else {
+        alert("Product with this title name or Code already exist");
+      }
     } else {
-      updateDispatch(updatePost(currentId, postData));
-      alert("Update Successfully");
-      document.getElementById("submit-btn").innerHTML = "Add Product";
+      if (checkTitle == false && checkCode == false) {
+        updateDispatch(updatePost(currentId, postData));
+        alert("Update Successfully");
+        document.getElementById("submit-btn").innerHTML = "Add Product";
+      }
+      else{
+        alert("Product with this title name or Code already exist");
+      }
+      
     }
   }
   //for Validations
@@ -74,6 +116,7 @@ function ManageProducts() {
   console.log("Sub Cat", posts);
   console.log("Products", prod);
   console.log("Collection ", col);
+  console.log("Product Getting ", prod);
   //Delete Products
   function delProducts(data) {
     deleteDispatch(deleteProducts(data._id));
@@ -136,6 +179,54 @@ function ManageProducts() {
                     }
                     placeholder="xxx-xxx-xx"
                   />
+                </div>
+                <div>
+                  <Select
+                    onChange={(e) =>
+                      setPostData({ ...postData, Color: e.target.value })
+                    }
+                  >
+                    <Option disabled selected>
+                      Color
+                    </Option>
+                    <Option>White</Option>
+                    <Option>Black</Option>
+                    <Option>Blue</Option>
+                    <Option>Yellow</Option>
+                    <Option>Brown</Option>
+                    <Option>Red</Option>
+                    <Option>Green</Option>
+                    <Option>Purple</Option>
+                  </Select>
+                  <Select
+                    onChange={(e) =>
+                      setPostData({ ...postData, Size: e.target.value })
+                    }
+                  >
+                    <Option disabled selected>
+                      Size
+                    </Option>
+                    <Option>Extra-Small</Option>
+                    <Option>Small</Option>
+                    <Option>Medium</Option>
+                    <Option>Large</Option>
+                    <Option>Extra-Large</Option>
+                  </Select>
+                  <Select
+                    onChange={(e) =>
+                      setPostData({ ...postData, Fabric: e.target.value })
+                    }
+                  >
+                    <Option disabled selected>
+                      Fabric
+                    </Option>
+                    <Option>Chiffon</Option>
+                    <Option>Cotton</Option>
+                    <Option>Crepe</Option>
+                    <Option>Linen</Option>
+                    <Option>Satin</Option>
+                    <Option>Silk</Option>
+                  </Select>
                 </div>
                 <div className="dropdown-center d-grid gap-2 col-12 mx-auto">
                   <label className="form-label">Product Category</label>
@@ -322,6 +413,8 @@ function ManageProducts() {
               <th className="th-sm">Category</th>
               <th className="th-sm">Sub Category</th>
               <th className="th-sm">Collection</th>
+              <th className="th-sm">Size</th>
+              <th className="th-sm">Color</th>
               <th className="th-sm">Image</th>
               <th className="th-sm">Description</th>
               <th className="th-sm">Actions</th>
@@ -339,6 +432,8 @@ function ManageProducts() {
                     <td>{element.Category}</td>
                     <td>{element.SubCategory}</td>
                     <td>{element.Collection}</td>
+                    <td>{element.Size}</td>
+                    <td>{element.Color}</td>
                     <td>
                       <img
                         style={{ width: "70px" }}

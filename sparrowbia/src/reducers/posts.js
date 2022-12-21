@@ -8,6 +8,8 @@ export default (posts = [], action) => {
       return [...posts, action.payload];
     case "FETCH_USERS":
       return [action.payload];
+    case "FETCH_USERS_BY_EMAIL":
+      return [action.payload]
     default:
       return posts;
   }

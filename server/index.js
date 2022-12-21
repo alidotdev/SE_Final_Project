@@ -10,12 +10,9 @@ const connectDB = require('./src/configs/db');
 const app = express()
 const port = process.env.PORT || 8000;
 const {errorHandler} = require('./src/middlewares/middleware')
-
-
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-
 connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -28,5 +25,4 @@ app.use('/subcat', require('./src/routes/subCategoryRoutes'))
 // app.listen(port, () => console.log('listening on port ' + port));
 
 app.use(errorHandler) // Error Handlor
-
 app.listen(port , () => console.log('Server started on port ' + port))
