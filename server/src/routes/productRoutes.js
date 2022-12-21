@@ -18,8 +18,9 @@ const router = express.Router()
 // import express from 'express';
 // import { createPosts,getPosts,deleteProducts,updatePost } from '../UserControllers/Products.js';
 
-const { createPosts,getPosts,deleteProducts,updatePost, getProductsByID, getProductByCollection } = require('../controllers/productController');
+const { createPosts,getPosts,deleteProducts,updatePost, getProductsByID, getProductByCollection, getProductByParams } = require('../controllers/productController');
 router.get('/',getPosts);
+router.get('/:cat/:parameter',getProductByParams);
 router.get('/:coll/:Cat/:SubCat', getProductByCollection)
 router.get('/:ids',getProductsByID);
 router.post('/',createPosts);

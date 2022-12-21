@@ -4,6 +4,27 @@ const mongoose = require('mongoose')
 const postProduct = require("../models/productModel.js");
 const asyncHandler = require('express-async-handler')
 
+// Get product by color, Fabric, Size 
+
+const getProductByParams = asyncHandler(async (req, res) => {
+  console.log('I am get product by params');
+  const cat = req.params.cat;
+  const content = req.params.parameter;
+  console.log(cat , content);
+  // const cat = parameter.substring(0, parameter.indexOf('-'));
+  // const content = parameter.substring(parameter.indexOf('-') + 1, parameter.length);
+  // console.log(cat, content)
+  const product = await postProduct.find({[cat]: content})
+
+  if(!product){
+    res.status(404);
+    throw new Error('Products not found')
+  }
+  res.status(200).json(product)
+
+})
+
+
 //Get Products by Collection
 const getProductByCollection = asyncHandler(async (req, res) => { 
   const products = await postProduct.find({Collection: req.params.coll ,Category: req.params.Cat,SubCategory: req.params.SubCat})
@@ -150,7 +171,7 @@ const updatePost = async (req, res) => {
 
 // module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductByCollection};
 
-module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID, getProductByCollection};
+module.exports = { getPosts, createPosts, deleteProducts, updatePost , getProductsByID, getProductByCollection, getProductByParams};
 
 
 
