@@ -4,8 +4,8 @@ import MainTitle from "../Component/MainTitle";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getPosts , getPostsByEmail } from "../actions/posts";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 const Login = () => {
   const navigate = useNavigate();
   const fetchUsers = useDispatch();

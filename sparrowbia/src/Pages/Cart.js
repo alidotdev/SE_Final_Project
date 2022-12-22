@@ -2,10 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart, fetchProductsbyIDS, updateCart } from "../actions/posts";
 import { useEffect, useState } from "react";
 import Product from "../Component/Product";
+import { useNavigate } from "react-router-dom";
+// import { useHistory } from 'react-router-dom';
+
 
 const Cart = () => {
+  // To check user is logged in or not
+  // let history = useHistory();
+
+  
   const cartData = useSelector((state) => state.cart);
   const mail = useSelector((state) => state.posts);
+  
+  const navigate = useNavigate();
+
   const pro = useSelector((state) => state.products);
   const getCartDispatch = useDispatch();
   const getProductsById = useDispatch();
@@ -16,7 +26,10 @@ const Cart = () => {
     if (mail.length > 0) {
       getCartDispatch(getCart(mail[0][0].Email));
     } else {
-      alert("First Login to view Carts product");
+      alert("First Login to view Carts");
+      navigate("/Login");
+      // <Navigate to="/Login" replace={true} />
+      // history.push('/Login');
     }
   },[]);
   // console.log("Cart type: ", cartData)

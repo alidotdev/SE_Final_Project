@@ -6,6 +6,7 @@ import Image from "../Images/PM.webp";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useNavigate, Link } from "react-router-dom";
@@ -26,6 +27,8 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 function ManageProducts() {
+  const navigate = useNavigate();
+  const mail = useSelector((state) => state.posts);
   const dispatchProducts = useDispatch();
   const deleteDispatch = useDispatch();
   const fetchSubCat = useDispatch();
@@ -49,6 +52,23 @@ function ManageProducts() {
     Size: "Size",
     Fabric: "Fabric",
   });
+
+  useEffect(() => {
+    // console.log(mail);
+    // console.log("Mail of admin ", mail[0][0].Email);
+    alert('mail');
+    // alert(mail === undefined);
+    if (mail.length > 0) {
+      
+      console.log("Successfully logged in as admin");
+    } else {
+      alert("First Login as admin to get access to this page");
+      navigate("/Login");
+      // <Navigate to="/Login" replace={true} />
+      // history.push('/Login');
+    }
+  },[]);
+
   useEffect(() => {
     fetchSubCat(getSubCatPosts());
     fetchCollection(getCollection());
@@ -127,7 +147,7 @@ function ManageProducts() {
     setPostData(data);
     setCurrentId(data._id);
   };
-  const navigate = useNavigate();
+  
   function LogOut() {
     navigate("/");
   }
@@ -470,4 +490,5 @@ function ManageProducts() {
     </div>
   );
 }
+
 export default ManageProducts;
