@@ -23,7 +23,7 @@ const setCart =asyncHandler( async (req, res) => {
     // console.log(req.body.products)
 
     
-    if (!req.body.user && !req.body.products) {
+    if (!req.body[0][0].user && (!req.body[0][0].products || !req.body.products)) {
         res.status(400)
         throw new Error('Please add all parameters')
     }
@@ -34,14 +34,14 @@ const setCart =asyncHandler( async (req, res) => {
     
 
     // if (await cartModel.find({user: req.body.user}).limit(1).size() > 0) {
-    const userExist = await cartModel.find({ user: req.body.user });
+    const userExist = await cartModel.find({ user: req.body.user || req.body[0][0].user});
     // console.log(userExist.length)
     if(userExist.length > 0){                                                        // Update case
         console.log('Update case')
-        const filter = {user: req.body.user}
+        const filter = {user: req.body.user || req.body[0][0].user}
         // const update = { products: req.body.products }
         cart = await cartModel.findOne(filter) 
-        cart.products = req.body.products
+        cart.products = req.body.products || req.body[0][0].products
         cart.save()
         
         // console.log('Updated')
@@ -51,8 +51,8 @@ const setCart =asyncHandler( async (req, res) => {
     else{         
         console.log('Create case')                                                                   // Insert case
     const cart = await cartModel.create({
-        user: req.body.user,
-        products: req.body.products
+        user: req.body.user || req.body[0][0].user,
+        products: req.body.products || req.body[0][0].products
 
     })
     res.status(200).json(cart)
